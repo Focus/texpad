@@ -15,7 +15,8 @@ class RenderMaths {
     MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'hidden-buffer'], [() => {this.copyMaths()}])
   }
   copyMaths () {
-    document.getElementById('pad-displayarea').innerHTML = document.getElementById('hidden-buffer').innerHTML
+    const buffer = document.getElementById('hidden-buffer').innerHTML
+    document.getElementById('pad-displayarea').innerHTML = buffer.replace(/\n|\r/g,'<br />')
     this.mathsLock = false
     this.updateMongo()
   }

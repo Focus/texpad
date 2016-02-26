@@ -12,12 +12,12 @@
     <div class='col-md-6'>
       <textarea class='form-control input-group-lg' autocomplete='off' placeholder='' rows='30' id='pad-textarea'></textarea>
     </div>
-    <div class='col-md-6'>
-      <span class='pre' id='pad-displayarea'>{{{padContent}}}</span>
+    <div class='col-md-6' id='pad-displayarea'>
+      {{{padContent}}}
     </div>
   </div>
-    <div id='hidden-maths'>{{hiddenMaths}}</div>
+    <div id='hidden-maths' class='col-md-6'>{{hiddenMaths}}</div>
     {{#mathjax}}
-    <div id='hidden-buffer'></div>
+    <div id='hidden-buffer' class='col-md-6'></div>
     {{/mathjax}}
 </template>
