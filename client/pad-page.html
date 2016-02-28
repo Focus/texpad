@@ -13,11 +13,12 @@
       <textarea class='form-control input-group-lg' autocomplete='off' placeholder='' rows='30' id='pad-textarea'></textarea>
     </div>
     <div class='col-md-6' id='pad-displayarea'>
-      {{{padContent}}}
     </div>
   </div>
-    <div id='hidden-maths' class='col-md-6'>{{hiddenMaths}}</div>
+  <div class='row'>
+    <div id='hidden-maths' class='col-lg-6'>{{content}}</div>
     {{#mathjax}}
-    <div id='hidden-buffer' class='col-md-6'></div>
+    <div id='hidden-buffer' class='col-lg-6'></div>
     {{/mathjax}}
+  </div>
 </template>

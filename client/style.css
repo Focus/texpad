@@ -62,3 +62,6 @@ footer {
 #hidden-maths, #hidden-buffer {
   display: none;
 }
+.pad-textarea {
+  width: 100%;
+}

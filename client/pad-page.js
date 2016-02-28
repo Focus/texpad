@@ -1,3 +1,7 @@
+// Renders the maths that the user entered using MathJax.
+// It copies the user input to a hidden div, and compiles it there.
+// This makes the transition appear smooth.
+// For some reason, something screws up without the double buffer
 class RenderMaths {
   constructor (pageId) {
     this.timeout = false
@@ -18,11 +22,10 @@ class RenderMaths {
     const buffer = document.getElementById('hidden-buffer').innerHTML
     document.getElementById('pad-displayarea').innerHTML = buffer.replace(/\n|\r/g,'<br />')
     this.mathsLock = false
-    this.updateMongo()
   }
   updateMongo (content) {
     Pads.update({_id: this.pageId},{
-      '$set': {content: Session.get('hiddenMaths')}
+      '$set': {content: content}
     })
   }
 }
@@ -32,23 +35,25 @@ Template.mathjax.onCreated(function () {
 })
 
 Template.padPage.onRendered(function () {
-  this.renderer = new RenderMaths(this.data._id)
-  Session.set('hiddenMaths', this.data.content)
-  this.find('#pad-textarea').innerHTML = this.data.content
+  this.renderer = new RenderMaths(this.data)
   MathJaxHelper.onMathJaxReady(() => {
-    this.renderer.render()
+    // this.renderer.render()
+    this.autorun(() => {
+      pad = Pads.findOne({_id: this.data})
+      this.find('#pad-textarea').value = pad.content
+      Session.set('content', pad.content)
+      this.renderer.render()
+    })
   })
 })
 
 Template.padPage.events({
   'keyup #pad-textarea' (event, template) {
-    Session.set('hiddenMaths', event.target.value)
+    template.renderer.updateMongo(event.target.value)
     template.renderer.render()
   }
 })
 
 Template.padPage.helpers({
-  hiddenMaths() {
-    return Session.get('hiddenMaths')
-  }
+  content () { return Session.get('content') }
 })

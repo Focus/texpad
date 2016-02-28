@@ -10,7 +10,8 @@ Router.route('/:_id', {
     return Meteor.subscribe('padById', this.params._id)
   },
   data () {
-    return Pads.findOne({_id: this.params._id})
+    return this.params._id
+    // return Pads.findOne({_id: this.params._id}, {reactive: true})
   },
   action () {
     this.render('padPage')
