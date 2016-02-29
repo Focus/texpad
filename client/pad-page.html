@@ -3,22 +3,25 @@
     <div class='container-fluid'>
       <a class='navbar-brand' href='/'>TexPad</a>
       <ul class="nav navbar-nav">
-        <li><a href='#'>Help</a></li>
+        <li>
+          <a href='#'>Help</a>
+        </li>
       </ul>
     </div>
   </nav>
 
-  <div class='row'>
-    <div class='col-md-6'>
-      <textarea class='form-control input-group-lg' autocomplete='off' placeholder='' rows='30' id='pad-textarea'></textarea>
+  <div class='container-fluid'>
+    <div class='row'>
+      <div class='col-md-6'>
+        <textarea class='form-control input-group-lg' autocomplete='off' placeholder='' rows='30' id='pad-textarea'></textarea>
+      </div>
+      <div class='col-md-6' id='pad-displayarea'></div>
     </div>
-    <div class='col-md-6' id='pad-displayarea'>
+    <div class='row'>
+      <div id='hidden-maths' class='col-lg-6'>{{content}}</div>
+      {{#mathjax}}
+        <div id='hidden-buffer' class='col-lg-6'></div>
+      {{/mathjax}}
     </div>
-  </div>
-  <div class='row'>
-    <div id='hidden-maths' class='col-lg-6'>{{content}}</div>
-    {{#mathjax}}
-    <div id='hidden-buffer' class='col-lg-6'></div>
-    {{/mathjax}}
   </div>
 </template>

@@ -52,7 +52,8 @@ footer {
 
 .explanation {
   color: #1a1f25;
-  padding: 30px 0px 50px 0px;
+  padding-top: 30px;
+  padding-bottom: 50px;
 }
 
 .pre {
