@@ -19,3 +19,4 @@ iron:router
 fortawesome:fontawesome
 convexset:mathjax
 spiderable
+jquery

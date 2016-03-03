@@ -1,0 +1,40 @@
+<template name="help">
+  <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h2 class="modal-title">Quick guide</h2>
+        </div>
+        <div class="modal-body">
+          <p>Anyone who you share the URL of this page with will see in real time what you write. You will also see what they write real time as well.
+          </p>
+          <p>For maths commands, use $ for inline maths and $$ or \[ \] for displayed maths. For example:</p>
+          <p>
+            <code>We know that $\sum_{n=1}^\infty \frac{1}{n}=\infty$</code>
+          </p>
+          {{#mathjax}}
+            <p>We know that $\sum_{n=1}^\infty \frac{1}{n}=\infty$</p>
+          {{/mathjax}}
+          <p>
+            <code>
+              We know that<br>
+              \[<br>
+              \sum_{n=1}^\infty \frac{1}{n}=\infty<br>
+              \]
+            </code>
+          </p>
+          {{#mathjax}}
+            <p>We know that \[ \sum_{n=1}^\infty \frac{1}{n}=\infty \]</p>
+          {{/mathjax}}
+
+          <hr>
+
+          Found a bug? Have suggestions or feedback? <a href="https://waffle.io/Focus/texpad">Waffle me!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
