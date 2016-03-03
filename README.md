@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/Focus/texpad.png?label=ready&title=Ready)](https://waffle.io/Focus/texpad)
 TexPad
 ======
 
