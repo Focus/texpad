@@ -14,6 +14,7 @@ Router.route('/:_id', {
     // return Pads.findOne({_id: this.params._id}, {reactive: true})
   },
   action () {
-    this.render('padPage')
+    if(this.params._id === 'faq') this.render('faq')
+    else this.render('padPage')
   }
 })
