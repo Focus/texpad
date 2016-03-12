@@ -1,0 +1,77 @@
+<template name='faq'>
+  <nav class='navbar navbar-inverse'>
+    <div class='container-fluid'>
+      <a class='navbar-brand' href='/'>TexPad</a>
+    </div>
+  </nav>
+  <div class="container-fluid faq">
+    <div class="container">
+      <div class="text-center">
+        <div class="row text-center">
+          <h2>Frequently Asked Questions</h2>
+          <hr class="small">
+        </div>
+        <h3>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse0">
+          How do I export my TeXPad as a PDF?
+        </a>
+      </h3>
+        <div id="collapse0" class="panel-collapse collapse ">
+          <div class="panel-body">
+            You can export or print your TeXPad by <code>File>Print</code>, or alternatively using the shortcut <code>CTRL/CMD + P</code>. If you wish to save as PDF, you can select this from the options on the print dialog.
+          </div>
+        </div>
+        <h3>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+          What happens to all of my data?
+        </a>
+      </h3>
+        <div id="collapse1" class="panel-collapse collapse ">
+          <div class="panel-body">
+            At the moment I don't have a plan for what to do with the data, so it is stored indefinitely on the server. This is subject to change depending on how much data we have to hold. If you wish to erase your data then simply delete everything in the text area of the TeXPad.
+          </div>
+        </div>
+        <h3>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+          Why is the website slow to load sometimes?
+        </a>
+        </h3>
+        <div id="collapse2" class="panel-collapse collapse ">
+          <div class="panel-body">
+            I am hosting this website on a free plan of <a href="https://www.heroku.com/">Heroku</a> for the time being. This means that the app sleeps when nobody has visited within the last hour, and so will take some time to wake up. If the popularity of the website picks up then I am planning to switch to a paid plan.
+          </div>
+        </div>
+        <h3>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+          Who can see my TexPad?
+        </a>
+        </h3>
+        <div id="collapse3" class="panel-collapse collapse ">
+          <div class="panel-body">
+            Technically, anyone can view the contents of your TeXPad. Although in practice this is a little difficult. Each TeXPad receives an <a href="https://docs.mongodb.org/manual/reference/object-id/">ObjectId</a> and anyone who knows this ID will be able to see the TeXPad.
+          </div>
+        </div>
+        <h3>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+          I found a bug or have a suggestion. Where can I contact you?
+        </a>
+        </h3>
+        <div id="collapse4" class="panel-collapse collapse ">
+          <div class="panel-body">
+            This website is still in its infancy, so I welcome any feedback. If you have found bugs or have suggestions you can fill out a report <a href="https://waffle.io/Focus/texpad">here</a>. If you can code, all the better, you can send me a pull request on <a href="https://github.com/Focus/texpad">GitHub</a>.
+          </div>
+        </div>
+        <h3>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+          Is this website safe?
+        </a>
+        </h3>
+        <div id="collapse5" class="panel-collapse collapse ">
+          <div class="panel-body">
+            I have tried my best to make sure the website is safe as possible. It might be the case that I have overlooked some detail, so it's probably best not to share any sensitive information here. This website is also open sourced, you can take a look at the code at <a href="https://github.com/Focus/texpad">GitHub</a> and see if I have done anything wrong.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
