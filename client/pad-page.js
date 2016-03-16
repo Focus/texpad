@@ -10,6 +10,7 @@ class RenderMaths {
     this.hiddenBuffer = document.getElementById('hidden-buffer')
     this.hiddenMaths = document.getElementById('hidden-maths')
     this.padDisplay = document.getElementById('pad-displayarea')
+    this.padTextarea = document.getElementById('pad-textarea')
   }
   render() {
     if (this.timeout) { clearTimeout(this.timeout) }
@@ -24,6 +25,10 @@ class RenderMaths {
   }
   copyMaths() {
     this.padDisplay.innerHTML = this.hiddenBuffer.innerHTML.replace(/\n|\r/g,'<br />')
+    const padHeight = this.padDisplay.offsetHeight + 10;
+    if (padHeight > 600 && padHeight > this.padTextarea.offsetHeight + 10) {
+      this.padTextarea.style.height =  padHeight + 'px'
+    }
     this.mathsLock = false
   }
   updateMongo(content) {
@@ -42,8 +47,12 @@ Template.padPage.onRendered(function() {
   MathJaxHelper.onMathJaxReady(() => {
     // this.renderer.render()
     this.autorun(() => {
-      pad = Pads.findOne({_id: this.data})
-      this.find('#pad-textarea').value = pad.content
+      const pad = Pads.findOne({_id: this.data})
+      const padTextArea = this.find('#pad-textarea')
+      const begin = padTextArea.selectionStart
+      const end = padTextArea.selectionEnd
+      padTextArea.value = pad.content
+      padTextArea.setSelectionRange(begin, end)
       Session.set('content', pad.content)
       this.renderer.render()
     })
