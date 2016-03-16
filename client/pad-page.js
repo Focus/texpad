@@ -3,38 +3,41 @@
 // This makes the transition appear smooth.
 // For some reason, something screws up without the double buffer
 class RenderMaths {
-  constructor (pageId) {
+  constructor(pageId) {
     this.timeout = false
     this.mathsLock = false
     this.pageId = pageId
+    this.hiddenBuffer = document.getElementById('hidden-buffer').innerHTML
+    this.hiddenMaths = document.getElementById('hidden-maths').innerHTML
+    this.padDisplay = document.getElementById('pad-displayarea').innerHTML
   }
-  render () {
-    if(this.timeout){ clearTimeout(this.timeout) }
-    this.timeout = setTimeout( () => {this.mathJaxHook()}, 150)
+  render() {
+    if (this.timeout) { clearTimeout(this.timeout) }
+    this.timeout = setTimeout(() => {this.mathJaxHook()}, 150)
   }
-  mathJaxHook () {
-    if(this.mathsLock){ return }
+  mathJaxHook() {
+    if (this.mathsLock) { return }
     this.mathsLock = true
-    document.getElementById('hidden-buffer').innerHTML = document.getElementById('hidden-maths').innerHTML
-    MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'hidden-buffer'], [() => {this.copyMaths()}])
+    this.hiddenBuffer = this.hiddenMaths
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'hidden-buffer'],
+                      [() => {this.copyMaths()}])
   }
-  copyMaths () {
-    const buffer = document.getElementById('hidden-buffer').innerHTML
-    document.getElementById('pad-displayarea').innerHTML = buffer.replace(/\n|\r/g,'<br />')
+  copyMaths() {
+    this.padDisplay = this.hiddenBuffer.replace(/\n|\r/g,'<br />')
     this.mathsLock = false
   }
-  updateMongo (content) {
+  updateMongo(content) {
     Pads.update({_id: this.pageId},{
-      '$set': {content: content}
+      $set: {content: content}
     })
   }
 }
 
-Template.mathjax.onCreated(function () {
+Template.mathjax.onCreated(function() {
   MathJaxHelper.config = mathJaxConfig
 })
 
-Template.padPage.onRendered(function () {
+Template.padPage.onRendered(function() {
   this.renderer = new RenderMaths(this.data)
   MathJaxHelper.onMathJaxReady(() => {
     // this.renderer.render()
@@ -48,12 +51,12 @@ Template.padPage.onRendered(function () {
 })
 
 Template.padPage.events({
-  'keyup #pad-textarea' (event, template) {
+  'keyup #pad-textarea'(event, template) {
     template.renderer.updateMongo(event.target.value)
     template.renderer.render()
   }
 })
 
 Template.padPage.helpers({
-  content () { return Session.get('content') }
+  content() { return Session.get('content') }
 })
