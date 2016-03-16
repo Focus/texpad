@@ -7,9 +7,9 @@ class RenderMaths {
     this.timeout = false
     this.mathsLock = false
     this.pageId = pageId
-    this.hiddenBuffer = document.getElementById('hidden-buffer').innerHTML
-    this.hiddenMaths = document.getElementById('hidden-maths').innerHTML
-    this.padDisplay = document.getElementById('pad-displayarea').innerHTML
+    this.hiddenBuffer = document.getElementById('hidden-buffer')
+    this.hiddenMaths = document.getElementById('hidden-maths')
+    this.padDisplay = document.getElementById('pad-displayarea')
   }
   render() {
     if (this.timeout) { clearTimeout(this.timeout) }
@@ -18,12 +18,12 @@ class RenderMaths {
   mathJaxHook() {
     if (this.mathsLock) { return }
     this.mathsLock = true
-    this.hiddenBuffer = this.hiddenMaths
+    this.hiddenBuffer.innerHTML = this.hiddenMaths.innerHTML
     MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'hidden-buffer'],
                       [() => {this.copyMaths()}])
   }
   copyMaths() {
-    this.padDisplay = this.hiddenBuffer.replace(/\n|\r/g,'<br />')
+    this.padDisplay.innerHTML = this.hiddenBuffer.innerHTML.replace(/\n|\r/g,'<br />')
     this.mathsLock = false
   }
   updateMongo(content) {

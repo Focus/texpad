@@ -8,7 +8,7 @@ Template.landing.events({
         console.log(error)
         return
       }
-      Router.go('/' +   result)
+      Router.go('/' + result)
     })
     event.target.innerHTML = 'Creating Pad'
     event.target.setAttribute('disabled', 'disabled')
